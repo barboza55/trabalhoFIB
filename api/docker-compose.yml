@@ -1,0 +1,35 @@
+version: '2.0'
+
+services:
+  mongodb:
+    image: mongo:3.6.7-stretch
+    container_name: mvc-mongodb
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "password"
+      MONGO_INITDB_DATABASE: "mvc"
+    networks: 
+      local:
+    ports:
+      - 27013:27017
+
+  mongoexpress:
+    container_name: mvc-mongoexpress
+    image: mongo-express:latest
+    ports:
+      - 8085:8081
+    networks: 
+      local:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "root"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "password"
+    depends_on:
+      - mongodb
+
+networks: 
+  local:
