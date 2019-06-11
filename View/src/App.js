@@ -1,5 +1,6 @@
 import './index.css';
 import React from 'react';
+import Teste from '../src/cadastro/teste';
 import login from '../src/Login/login';
 import cadastro from '../src/cadastro/cadastro';
 import dashboard from '../src/Dashboard/dashboard';
@@ -8,17 +9,16 @@ import { Route } from 'react-router';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
+        this.state = {};
     }
 
     render() {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route exact path='/dashboard' component={dashboard} />
-                    <Route exact path='/' component={login} />
-                    <Route exact path='/cadastro' component={cadastro} />
+                    <Route exact path="/dashboard" component={dashboard} />
+                    <Route exact path="/" component={login} />
+                    <Route exact path="/cadastro" component={cadastro} />
                 </Switch>
             </BrowserRouter>
         );
